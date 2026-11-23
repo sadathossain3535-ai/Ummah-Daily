@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">UMMAH DAILY</string>
+    <string name="share_schedule_chooser">নামাজের সময়সূচী শেয়ার করুন</string>
+    <string name="share_dua_chooser">দোয়া শেয়ার করুন</string>
+    <string name="alarm_enabled_toast">আযান অ্যালার্ম চালু হয়েছে — অ্যাপ বন্ধ থাকলেও আযান বাজবে</string>
+    <string name="alarm_disabled_toast">আযান অ্যালার্ম বন্ধ হয়েছে</string>
+</resources>
