@@ -19,13 +19,36 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '9.3.1'
-      - name: Create fallback google-services.json if missing
+      - name: Configure google-services.json
         run: |
-          if [ ! -f app/google-services.json ]; then
-            echo '{"project_info":{"project_number":"000000000000","firebase_url":"https://dummy.firebaseio.com","project_id":"ummah-daily","storage_bucket":"ummah-daily.appspot.com"},"client":[{"client_info":{"mobilesdk_app_id":"1:000000000000:android:0000000000000000","android_client_info":{"package_name":"com.example.ummahdaily"}},"api_key":[{"current_key":"AIzaSyDummyKeyForBuild1234567890"}]}],"configuration_version":"1"}' > app/google-services.json
-          fi
+          cat << 'EOF' > app/google-services.json
+          {
+            "project_info": {
+              "project_number": "100000000000",
+              "firebase_url": "https://ummah-daily.firebaseio.com",
+              "project_id": "ummah-daily",
+              "storage_bucket": "ummah-daily.appspot.com"
+            },
+            "client": [
+              {
+                "client_info": {
+                  "mobilesdk_app_id": "1:100000000000:android:1000000000000000",
+                  "android_client_info": {
+                    "package_name": "com.aistudio.ummahdaily.qmrkxt"
+                  }
+                },
+                "api_key": [
+                  {
+                    "current_key": "AIzaSyDummyKeyForBuild1234567890"
+                  }
+                ]
+              }
+            ],
+            "configuration_version": "1"
+          }
+          EOF
       - name: Build Debug APK
-        run: gradle assembleDebug -x lint --stacktrace
+        run: gradle assembleDebug -x lint
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
